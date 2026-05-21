@@ -6,6 +6,7 @@ use serde::{Deserialize, Serialize};
 ///
 /// Used in multipart form fields where we need the renamed string (e.g. `"fine-tune"`)
 /// instead of the Rust variant name.
+#[allow(dead_code)]
 pub(crate) fn enum_to_string<T: Serialize>(value: &T) -> Result<String, OpenAIError> {
     let v = serde_json::to_value(value)?;
     v.as_str()

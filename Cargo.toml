@@ -48,7 +48,7 @@ rustls = { version = "0.23", default-features = false, features = ["ring", "std"
 tokio = { version = "1", features = ["full"] }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-reqwest = { version = "0.13", default-features = false, features = ["json", "stream"] }
+reqwest = { version = "0.13", default-features = false, features = ["json", "stream", "multipart"] }
 tokio = { version = "1", features = ["rt", "macros", "sync"] }
 wasm-bindgen-futures = "0.4"
 gloo-timers = { version = "0.3", features = ["futures"] }
@@ -76,6 +76,9 @@ moderations = []
 batches = []
 uploads = []
 beta = []
+realtime = ["realtime-protocol", "beta"]
+realtime-protocol = []
+realtime-ws-native = ["realtime-protocol", "dep:tokio-tungstenite"]
 macros = ["dep:openai-oxide-macros"]
 live-tests = []
 simd = ["dep:simd-json"]

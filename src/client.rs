@@ -1,5 +1,6 @@
 // OpenAI client
 
+#[cfg(not(target_arch = "wasm32"))]
 use std::time::Duration;
 
 use crate::azure::AzureConfig;
@@ -391,7 +392,7 @@ impl OpenAI {
     }
 
     /// Send a POST request with a multipart form body and deserialize the response.
-    #[cfg(not(target_arch = "wasm32"))]
+    #[allow(dead_code)]
     pub(crate) async fn post_multipart<T: serde::de::DeserializeOwned>(
         &self,
         path: &str,
@@ -418,6 +419,7 @@ impl OpenAI {
     }
 
     /// Send a POST request with JSON body and return raw bytes (for binary responses like audio).
+    #[allow(dead_code)]
     pub(crate) async fn post_raw<B: serde::Serialize>(
         &self,
         path: &str,
